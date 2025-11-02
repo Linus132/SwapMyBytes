@@ -1,0 +1,27 @@
+[
+  {
+    "username": "testuser1",
+    "email": "testuser1@example.com",
+    "password": "hashedpassword123"
+  },
+  {
+    "username": "johndoe",
+    "email": "johndoe@example.com",
+    "password": "hashedpassword456"
+  },
+  {
+    "username": "janedoe",
+    "email": "janedoe@example.com",
+    "password": "hashedpassword789"
+  },
+  {
+    "username": "alexsmith",
+    "email": "alexsmith@example.com",
+    "password": "hashedpassword321"
+  },
+  {
+    "username": "mariabrown",
+    "email": "mariabrown@example.com",
+    "password": "hashedpassword654"
+  }
+]

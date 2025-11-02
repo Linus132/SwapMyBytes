@@ -1,0 +1,21 @@
+.custom-dropzone {
+    margin: 0;
+    padding-top: 0px !important; 
+    border: 3px solid transparent;
+    border-radius: 15px !important;
+    padding: 30px;
+    background-color: #f4f8fb;
+    overflow: hidden; 
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .custom-dropzone:hover {
+    background-color: rgba(210, 236, 245, 0.4);
+  }
+  
+  .custom-dropzone-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: #555;
+  }

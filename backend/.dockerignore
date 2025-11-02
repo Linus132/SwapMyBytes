@@ -1,0 +1,17 @@
+# Not needed, dependencies are installed inside the container
+node_modules
+
+# Docker own files
+Dockerfile
+.dockerignore
+
+# Log files
+*.log
+
+# Source files, not required because we compile on the host machine and move dist folder to container
+# src
+# Uploaded files (will be created by the app)
+uploads
+# Test config and typescript config (not needed in production)
+jest.config.js
+# tsconfig.json

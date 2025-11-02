@@ -1,0 +1,27 @@
+.env
+
+# JetBrains IDE config files
+.idea
+
+# VSCode settings file
+.vscode
+
+# MAC OS dev files
+.DS_Store
+
+# Dependencies
+node_modules
+**/package-lock.json
+
+# Log files
+/logs
+
+# Backend distribution files
+backend/dist
+
+# Upload Folder
+**/uploads/
+docker-uploads
+
+# Jest coverage report
+coverage/

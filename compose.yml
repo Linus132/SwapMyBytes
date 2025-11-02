@@ -1,0 +1,55 @@
+services:
+  backend:
+    container_name: swapmybytes-backend
+    build:
+      context: ./backend
+    ports:
+      - "${SMB_BACKEND_PORT_EXTERNAL}:${SMB_BACKEND_PORT_INTERNAL}"
+    depends_on:
+      - db
+    env_file:
+      - ".env"
+    environment:
+      DOCKERIZED: true
+      PORT: ${SMB_BACKEND_PORT_INTERNAL}
+    volumes:
+      - ./docker-uploads:/usr/src/app/uploads
+
+  frontend:
+    container_name: swapmybytes-frontend
+    build:
+      context: ./frontend
+    ports:
+      - "${SMB_FRONTEND_PORT_EXTERNAL}:${SMB_FRONTEND_PORT_INTERNAL}"
+    env_file:
+      - ".env"
+    environment:
+      DOCKERIZED: true
+
+  db:
+    container_name: swapmybytes-db
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: ${SMB_MONGO_DBNAME}
+    ports:
+      - "${SMB_MONGO_PORT_EXTERNAL}:${SMB_MONGO_PORT_INTERNAL}"
+    volumes:
+      - mongo-data:/data/db
+      - ./backend/db/init:/docker-entrypoint-initdb.d
+
+  dbadmin:
+    container_name: swapmybytes-dbadmin
+    image: mongo-express:latest
+    restart: unless-stopped
+    ports:
+      - "${SMB_MONGOEXPRESS_PORT_EXTERNAL}:${SMB_MONGOEXPRESS_PORT_INTERNAL}"
+    depends_on:
+      - db
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://${SMB_MONGO_SERVICE_LOCATION}:${SMB_MONGO_PORT_INTERNAL}/
+      ME_CONFIG_BASICAUTH: false
+
+
+volumes:
+  mongo-data:
+    driver: local
