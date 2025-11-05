@@ -8,7 +8,9 @@
 
 Eine mobile-first Web-Anwendung mit einer unkonventionellen Idee: Lade eine Datei hoch, erhalte eine zufällige Datei von einem anderen Nutzer zurück und manage sie in deiner persönlichen Sammlung.
 
+
 ![App Preview](./docs/swapmybytes-preview.svg)
+
 
 ## 💡 Projekt-Konzept & Ursprung
 
@@ -29,7 +31,7 @@ Die Kernidee ist ein spielerischer Ansatz zum Thema File-Sharing. Anstatt Dateie
 
 Die Anwendung wurde als Full-Stack TypeScript-Projekt konzipiert und umgesetzt.
 
-*   **Frontend:** React, MaterialUI (MUI)
+*   **Frontend:** React, MaterialUI (MUI), Vite
 *   **Backend:** Node.js, Express.js (RESTful API)
 *   **Datenbank:** MongoDB mit Mongoose
 *   **Infrastruktur & Containerisierung:** Docker, Docker Compose
@@ -48,18 +50,28 @@ Das gesamte Projekt ist containerisiert und kann mit Docker Compose einfach gest
     git clone https://github.com/Linus132/SwapMyBytes.git
     cd SwapMyBytes
     ```
-2.  **Umgebungsvariablen vorbereiten:**
+2.  **`.env`-Datei aus Vorlage erstellen:**
     Es gibt eine `.env.example`-Datei im Hauptverzeichnis. Erstelle eine Kopie davon und nenne sie `.env`.
     ```bash
     cp .env.example .env
     ```
-    Passe die Werte in der `.env`-Datei bei Bedarf an.
 
-3.  **Anwendung starten:**
+3.  **Secrets generieren (WICHTIG!):**
+    Öffne die neu erstellte `.env`-Datei. Finde die folgenden leeren Variablen und fülle sie mit beliebigen, langen und zufälligen Zeichenketten. Du kannst z.B. einen Online-Passwort-Generator verwenden.
+    ```env
+    SMB_PRIVATE_KEY_ACCESS_TOKEN=HIER_DEINEN_ZUFÄLLIGEN_SCHLÜSSEL_EINFÜGEN
+    SMB_PRIVATE_KEY_REFRESH_TOKEN=HIER_DEINEN_ANDEREN_ZUFÄLLIGEN_SCHLÜSSEL_EINFÜGEN
+    ```
+    Ohne diese Schlüssel wird der Login-Prozess mit einem `500 Internal Server Error` fehlschlagen.
+
+4.  **Anwendung starten:**
     ```bash
     docker compose up --build -d
     ```
-    Die Anwendung ist anschließend unter `http://localhost:5080` (oder dem in der `.env` definierten Port) erreichbar.
+    Warte einen Moment, bis alle Container gestartet sind.
 
-4.  **Demo-Nutzer:**
-    Beim ersten Start werden automatisch drei Demo-Nutzer (`smb1`, `smb2`, `smb3`) mit dem Passwort `testuserpassword123!` angelegt.
+5.  **Anwendung im Browser öffnen:**
+    Öffne deinen Browser und navigiere zu **[http://127.0.0.1:5080](http://127.0.0.1:5080)**.
+
+6.  **Demo-Nutzer:**
+    Beim ersten Start werden automatisch drei Demo-Nutzer (`smb1`, `smb2`, `smb3`) mit dem Passwort `testuserpassword123!` angelegt, mit denen du dich einloggen und die Anwendung testen kannst.
